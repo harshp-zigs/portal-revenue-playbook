@@ -1,0 +1,188 @@
+/* Tokens */
+:root {
+  --ink: #101a2e;
+  --ink-soft: #46506a;
+  --paper: #ffffff;
+  --wash: #f3f6fb;
+  --line: #dbe2ee;
+  --blue: #1a6fe0;
+  --blue-dark: #0f56b3;
+  --mark: #ffe27a;
+
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+/* Base */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, 46rem);
+  margin-inline: auto;
+}
+
+a { color: var(--blue); }
+a:hover { color: var(--blue-dark); }
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  z-index: 20;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding-block: 0.9rem;
+  width: min(100% - 2.5rem, 62rem);
+}
+
+.site-header nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.site-header nav a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.site-header nav a:hover { color: var(--blue); }
+
+/* Article */
+.article { padding-block: 3.5rem 4.5rem; }
+
+.hero { margin-bottom: 3rem; }
+
+h1, h2 { font-family: var(--serif); color: var(--ink); text-wrap: balance; }
+
+h1 {
+  font-size: clamp(2.2rem, 5.6vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0 0 1.5rem;
+}
+
+.lede {
+  font-size: 1.25rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* The one memorable element: the highlighted backlink */
+.key-link {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(transparent 12%, var(--mark) 12%, var(--mark) 92%, transparent 92%);
+  padding: 0 0.2em;
+  margin: 0 -0.05em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  border-bottom: 2px solid var(--blue);
+}
+.key-link:hover { color: var(--blue-dark); background-color: transparent; }
+
+section { margin-top: 2.75rem; }
+
+h2 {
+  font-size: clamp(1.5rem, 3.4vw, 1.9rem);
+  line-height: 1.25;
+  font-weight: 700;
+  margin: 0 0 0.9rem;
+}
+
+p { margin: 0 0 1.1rem; }
+
+/* List */
+.checklist {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.checklist li {
+  position: relative;
+  padding: 0.85rem 0 0.85rem 2rem;
+  border-bottom: 1px solid var(--line);
+}
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: 1.2rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+/* Call to action */
+.cta {
+  margin-top: 4rem;
+  padding: 2.25rem 2rem;
+  background: var(--wash);
+  border-left: 5px solid var(--blue);
+  border-radius: 4px;
+}
+.cta h2 { margin-bottom: 0.6rem; }
+.cta p { color: var(--ink-soft); }
+
+.button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  background: var(--blue);
+  color: var(--paper);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+.button:hover { background: var(--blue-dark); color: var(--paper); }
+
+/* Small screens */
+@media (max-width: 36rem) {
+  .article { padding-block: 2.25rem 3rem; }
+  .lede { font-size: 1.125rem; }
+  .cta { padding: 1.75rem 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .button { transition: none; }
+}
